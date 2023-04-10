@@ -162,41 +162,6 @@ def extract_VietOCR(file_path):
 
     return output_path_extract
 
-"""Hàm sửa lỗi chính tả từ kết quả trả về của hàm trích xuất thông tin
-""" 
-def replace_words(input_file_path, output_file_path, word_dict):
-    # Mở file đầu vào để đọc
-    with open(input_file_path, 'r', encoding='utf-8') as input_file:
-        # Đọc nội dung file vào biến text
-        text = input_file.read()
-
-    # Thay thế từ trong từ điển
-    for key in word_dict:
-        # Sử dụng re.sub() để thay thế tất cả các từ trùng khớp với key
-        text = re.sub(r'\b{}\b'.format(key), word_dict[key], text)
-
-    # Mở file đầu ra để ghi
-    with open(output_file_path, 'w', encoding='utf-8') as output_file:
-        # Ghi nội dung đã được thay thế vào file đầu ra
-        output_file.write(text)
-
-    # In ra thông báo khi hoàn tất
-    print('Done!')
-    
-"""
-Test thử với hàm replace_words
-word_dict = {
-    'Dien tích': 'Diện tích',
-    'Dien tich': 'Diện tích',
-    'Dien tich': 'Diện tích',
-    'Điện tích': 'Diện tích',
-    'Dien tich': 'Diện tích',
-}
-input_file_path = r"/content/drive/MyDrive/sodo/ocr-so-so/output.txt"
-output_file_path = r"/content/drive/MyDrive/sodo/ocr-so-so/output_fixed.txt"
-replace_words(input_file_path, output_file_path, word_dict)
-"""
-
 """Hàm trích xuất thông tin bằng xử lý chuỗi và trả về full kết quả
 """ 
 def extract_info(file_path, new_numbers):
